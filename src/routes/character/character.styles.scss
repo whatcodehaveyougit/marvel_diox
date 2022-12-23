@@ -1,0 +1,20 @@
+.character-page {
+    background-color: transparent !important;
+    .character-page-headings {
+        padding: 20px 0;
+    }
+    .character-information {
+        background-color: black;
+        width: 100%;
+        opacity: 0.80;
+        color: white;
+        min-height: 500px;
+        padding: 0px;
+    }
+    .accordion-character-container {
+        margin: 0px !important;
+        border: 1px solid #c3b6b6;
+        color: white;
+        background-color: transparent;
+    }
+}

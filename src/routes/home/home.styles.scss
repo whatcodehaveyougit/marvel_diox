@@ -1,0 +1,17 @@
+.character-card-container {
+    height: 450px;
+    text-align: center;
+}
+
+.search-bar-component {
+    text-align: center;
+    width: 100%;
+    input {
+        width: 100%;
+        text-align: center;
+        padding: 1% 0;
+        font-size: 1.2em;
+        border: 1px solid #cacaca;
+    }
+    margin-bottom: 20px;
+}

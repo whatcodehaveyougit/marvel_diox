@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  app:
+    build: 
+      context: .
+    volumes: 
+      - .:/marvel_react_app
+    container_name: marvel_app_c
+    ports:
+      - '3000:3000'
+    image: app:react
+    command: npm start
+  
