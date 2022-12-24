@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import Nav from './components/nav/nav.component'
+import Nav from './components/nav/nav.component.tsx'
 import Home from './routes/home/home.component.tsx'
 import About from './routes/about/about.component.tsx'
 import Character from './routes/character/character.component.tsx'
@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react'
 
 function App() {
 
-  const [ charactersData, setCharacters ] = useState([])
+  const [ charactersData, setCharacters ] = useState<any[]>([])
 
   useEffect(  () => {
       const fetchPageData = async () => {

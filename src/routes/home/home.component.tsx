@@ -1,9 +1,8 @@
 import {
     Grid,
-    TextField
- } from '@mui/material';
+} from '@mui/material';
 import './home.styles.scss'
-import CharacterCard from '../../components/character-card/character-card.componet'
+import CharacterCard from '../../components/character-card/character-card.componet.tsx'
 import SearchBar from '../../components/search-bar/search-bar-component'
 import { useEffect, useState } from 'react'
 
