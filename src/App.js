@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import Nav from './components/nav/nav.component'
-import Home from './routes/home/home.component'
-import About from './routes/about/about.component'
-import Character from './routes/character/character.component'
+import Home from './routes/home/home.component.tsx'
+import About from './routes/about/about.component.tsx'
+import Character from './routes/character/character.component.tsx'
 import { Grid } from '@mui/material';
-import { fetchData } from './utils/utils'
+import { fetchData } from './utils/utils.ts'
 import { useState, useEffect } from 'react'
 
 

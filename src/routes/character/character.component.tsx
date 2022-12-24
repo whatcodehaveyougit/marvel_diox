@@ -1,9 +1,9 @@
 import './character.styles.scss'
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react'
-import { fetchData } from '../../utils/utils'
+import { fetchData } from '../../utils/utils.ts'
 import {
-     Accordion, 
+     Accordion,
      AccordionSummary,
      AccordionDetails,
      Box,
@@ -59,20 +59,20 @@ const Character = ( {charactersData } ) => {
 
 
     return (
-        <>  
+        <>
          <Card className="character-page">
-            <div className="thumbnail-image"  
+            <div className="thumbnail-image"
                 style={{ backgroundImage: `url(${backgroundImageUrl})` }}
                 >
-                <CardContent className="character-information">  
+                <CardContent className="character-information">
                     <Grid className="character-page-headings">
                         <Typography align="center" variant="h3">{characterData ? characterData.name : null}</Typography>
-                        <Typography align="center" variant="h5">List of comics for this character:</Typography>                 
-                    </Grid>            
+                        <Typography align="center" variant="h5">List of comics for this character:</Typography>
+                    </Grid>
                     <Grid>
                         {
                             characterComics && characterComics.map(( comic ) => (
-                                <Accordion 
+                                <Accordion
                                     className="accordion-character-container"
                                     key={comic.id}
                                     >
@@ -85,8 +85,8 @@ const Character = ( {charactersData } ) => {
                                     </AccordionSummary>
                                     <AccordionDetails>
                                         <Typography>
-                                            {  comic.description ? 
-                                                comic.description : 
+                                            {  comic.description ?
+                                                comic.description :
                                                 'No description for this comic ;('
                                             }
                                         </Typography>
@@ -98,7 +98,7 @@ const Character = ( {charactersData } ) => {
                 </CardContent>
             </div>
         </Card>
-        
+
         </>
     )
 }

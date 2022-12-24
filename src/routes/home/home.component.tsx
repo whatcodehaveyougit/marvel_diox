@@ -1,4 +1,4 @@
-import { 
+import {
     Grid,
     TextField
  } from '@mui/material';
@@ -7,9 +7,13 @@ import CharacterCard from '../../components/character-card/character-card.compon
 import SearchBar from '../../components/search-bar/search-bar-component'
 import { useEffect, useState } from 'react'
 
-const Home = ( { charactersData } ) => {
+const Home = ( props ) => {
 
-    const [ charactersDataState, setCharctersDataState ] = useState();
+    const {
+        charactersData
+      } = props;
+
+    const [ charactersDataState, setCharctersDataState ] = useState( charactersData );
 
     const handleChange = (e) => {
         const filteredCharacters = charactersData.filter(character => character.name.toLowerCase().includes(e.target.value.toLowerCase()));
@@ -20,14 +24,14 @@ const Home = ( { charactersData } ) => {
         if ( charactersData ) {
             setCharctersDataState( charactersData )
         }
-    }, [charactersData] )
+    }, [charactersData] );
 
     return (
         <div className="home-container">
             <div className="search-bar-component">
-                <input 
-                    placeholder="Search Marvel Characters..." 
-                    name="search-monsters" 
+                <input
+                    placeholder="Search Marvel Characters..."
+                    name="search-monsters"
                     className="search-monsters-input"
                     onChange={handleChange}
             />
