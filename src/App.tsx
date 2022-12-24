@@ -4,23 +4,19 @@ import Home from './routes/home/home.component.tsx'
 import About from './routes/about/about.component.tsx'
 import Character from './routes/character/character.component.tsx'
 import { Grid } from '@mui/material';
-import { fetchData } from './utils/utils.ts'
 import { useState, useEffect } from 'react'
-
+import myStore from './store/store.ts'
 
 function App() {
 
-  const [ charactersData, setCharacters ] = useState<any[]>([])
+  const [ charactersData, setCharacters ] = useState([])
 
-  useEffect(  () => {
-      const fetchPageData = async () => {
-          const result = await fetchData( '/characters' )
-          setCharacters( result['data']['results'] );
-      }
-      fetchPageData()
-          .catch(console.error)
+  useEffect(() => {
+    myStore.subscribe('myFirstModule', (newState: any) => {
+      console.log( newState )
+      setCharacters(newState.characterComics)
+    })
   }, [])
-
 
   return (
     <>

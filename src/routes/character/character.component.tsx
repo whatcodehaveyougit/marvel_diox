@@ -1,7 +1,7 @@
 import './character.styles.scss'
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react'
-import { fetchData } from '../../utils/utils.ts'
+// import { fetchData } from '../../utils/utils.ts'
 import {
      Accordion,
      AccordionSummary,
@@ -30,14 +30,7 @@ const Character = ( {charactersData } ) => {
         setBackgroundImageUrl( backgroundImageUrlConcatenated )
     }
 
-    useEffect(  () => {
-        const fetchPageData = async () => {
-            const result = await fetchData( apiRouteComicsData );
-            setCharacterComics( result['data']['results'] );
-        }
-        fetchPageData()
-            .catch(console.error)
-    }, [] )
+
 
     useEffect(  () => {
         // If we are given the character data, use that (it will save us having to do another fetch)
