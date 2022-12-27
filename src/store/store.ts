@@ -24,12 +24,18 @@ const myFirstModule: Module<{ characterComics: []; }> = {
       return {
         characterComics: array.characterComics
       }
+    },
+    DELETE_CHARACTER({ state }, characterToDeleteID){
+      let array = deepCopy(state)
+      let newArray = array.characterComics.filter(character => character.id != characterToDeleteID )
+      return {
+        characterComics: newArray
+      }
     }
   },
   actions: {
-      myFirstAction: async ({hash}) => {
+      fetchCharactersFromAPI: async ({hash}) => {
         const result = await fetchData( './characters' );
-        console.log(result)
         if(result.data.results.length > 0){
           myStore.mutate(hash, 'SET_CHARACTER_COMICS', { result })
         }
@@ -41,7 +47,7 @@ const myFirstModule: Module<{ characterComics: []; }> = {
 // The module must be registered to a store
 myStore.register('myFirstModule', myFirstModule);
 
-myStore.dispatch('myFirstModule', 'myFirstAction', {})
+myStore.dispatch('myFirstModule', 'fetchCharactersFromAPI', {})
 
 myStore.subscribe('myFirstModule', (newState: any) => {
   console.log('myFirstModule mutation:', newState);

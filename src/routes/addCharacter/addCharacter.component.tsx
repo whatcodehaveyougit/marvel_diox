@@ -17,7 +17,7 @@ const AddCharacter = ( ) => {
     event.preventDefault();
     const newCharacter = {
       name: characterName,
-      id: 123,
+      id: Math.floor(Math.random() * 200) + 1,
       description: characterDescription,
       thumbnail: {
         path: '',

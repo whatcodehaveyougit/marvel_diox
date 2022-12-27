@@ -7,9 +7,14 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import './character-card.styles.scss'
 import { Link } from 'react-router-dom'
-
+import myStore from '../../store/store.ts'
 
 const CharacterCard = ( { character } ) => {
+
+    function deleteCharacter( event, characterID ){
+        event.preventDefault()
+        myStore.mutate('myFirstModule', 'DELETE_CHARACTER', characterID );
+    }
 
     return (
         <Card className="character-card">
@@ -22,20 +27,23 @@ const CharacterCard = ( { character } ) => {
             <CardContent>
                 <Typography gutterBottom variant="h5">{character.name}</Typography>
                 <Grid className="max-lines">
-                    { character.description ?  
-                    <Typography  variant="body2" color="text.secondary">{character.description}</Typography> : 
+                    { character.description ?
+                    <Typography  variant="body2" color="text.secondary">{character.description}</Typography> :
                     <Grid>
-                        <Typography  variant="body2" color="text.secondary">This superhero has no description :,-(</Typography> 
-                        <Typography  variant="body2" color="text.secondary">However, I am sure they have lots of special powers!</Typography> 
-                    </Grid>                           
+                        <Typography  variant="body2" color="text.secondary">This superhero has no description :,-(</Typography>
+                        <Typography  variant="body2" color="text.secondary">However, I am sure they have lots of special powers!</Typography>
+                    </Grid>
                 }
                 </Grid>
             </CardContent>
             <CardActions className="card-actions">
                 <Link className="character-page-link" to={`/character/${character.id}`}>
-                    <Button variant="contained">Find out more</Button> 
+                    <Button variant="contained">Find out more</Button>
                 </Link>
-
+                <Button
+                    variant="contained"
+                    onClick={(event) => deleteCharacter(event, character.id)}
+                    >Delete Character</Button>
             </CardActions>
         </Card>
     )
