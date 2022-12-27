@@ -19,15 +19,15 @@ const myFirstModule: Module<{ characterComics: []; }> = {
         }
       },
     ADD_CHARACTER({ state}, newCharacter){
-      let array = deepCopy(state)
-      array.characterComics.push( newCharacter )
+      let characterComicsCopy = deepCopy(state.characterComics)
+      characterComicsCopy.push( newCharacter )
       return {
-        characterComics: array.characterComics
+        characterComics: characterComicsCopy
       }
     },
     DELETE_CHARACTER({ state }, characterToDeleteID){
-      let array = deepCopy(state)
-      let newArray = array.characterComics.filter(character => character.id != characterToDeleteID )
+      let characterComicsCopy = deepCopy(state.characterComics)
+      let newArray = characterComicsCopy.filter(character => character.id != characterToDeleteID )
       return {
         characterComics: newArray
       }
@@ -36,15 +36,12 @@ const myFirstModule: Module<{ characterComics: []; }> = {
   actions: {
       fetchCharactersFromAPI: async ({hash}) => {
         const result = await fetchData( './characters' );
-        if(result.data.results.length > 0){
           myStore.mutate(hash, 'SET_CHARACTER_COMICS', { result })
-        }
       },
-
   },
 };
 
-// The module must be registered to a store
+// A module must be registered to a store
 myStore.register('myFirstModule', myFirstModule);
 
 myStore.dispatch('myFirstModule', 'fetchCharactersFromAPI', {})
