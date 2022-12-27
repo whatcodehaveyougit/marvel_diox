@@ -5,6 +5,7 @@ import './home.styles.scss'
 import CharacterCard from '../../components/character-card/character-card.componet.tsx'
 import SearchBar from '../../components/search-bar/search-bar-component'
 import { useEffect, useState } from 'react'
+import AddCharacter from '../addCharacter/addCharacter.component.tsx'
 
 const Home = ( props ) => {
 
@@ -33,8 +34,9 @@ const Home = ( props ) => {
                     name="search-monsters"
                     className="search-monsters-input"
                     onChange={handleChange}
-            />
+                />
             </div>
+            <AddCharacter></AddCharacter>
             <Grid container spacing={2}>
                 {
                     charactersDataState && charactersDataState.map(( character ) => (

@@ -12,6 +12,7 @@ const Nav = () => {
             <div className='navbar-links-container'>
                 <Typography variant="h5"><Link to="/">Home</Link></Typography>
                 <Typography variant="h5"><Link to="/about">About</Link></Typography>
+                <Typography variant="h5"><Link to="/add-character">Add Character</Link></Typography>
             </div>
         </div>
     )

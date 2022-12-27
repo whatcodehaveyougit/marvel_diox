@@ -3,6 +3,8 @@ import Nav from './components/nav/nav.component.tsx'
 import Home from './routes/home/home.component.tsx'
 import About from './routes/about/about.component.tsx'
 import Character from './routes/character/character.component.tsx'
+import AddCharacter from './routes/addCharacter/addCharacter.component.tsx'
+
 import { Grid } from '@mui/material';
 import { useState, useEffect } from 'react'
 import myStore from './store/store.ts'
@@ -26,6 +28,7 @@ function App() {
             <Route path='/' element={<Home charactersData={charactersData} />} />
             <Route path='about' element={<About />} />
             <Route path='/character/:characterid' element={<Character charactersData={charactersData} />} />
+            <Route path='add-character' element={<AddCharacter />} />
         </Routes>
       </Grid>
 

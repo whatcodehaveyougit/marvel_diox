@@ -1,11 +1,9 @@
 import { fetchData } from '../utils/utils.ts'
 import useStore, { Module } from 'diox/connectors/react';
 import Store from 'diox';
-// import {
-//   mutate,
-// } from '@perseid/client'; // where is this ßrom ??
+import { deepCopy } from 'basx';
+
 const myStore = new Store();
-export default myStore;
 
 const myFirstModule: Module<{ characterComics: []; }> = {
   state: {
@@ -19,15 +17,24 @@ const myFirstModule: Module<{ characterComics: []; }> = {
             characterComics: apiResponse.result.data.results
           };
         }
+      },
+    ADD_CHARACTER({ state}, newCharacter){
+      let array = deepCopy(state)
+      array.characterComics.push( newCharacter )
+      return {
+        characterComics: array.characterComics
       }
+    }
   },
   actions: {
       myFirstAction: async ({hash}) => {
         const result = await fetchData( './characters' );
+        console.log(result)
         if(result.data.results.length > 0){
           myStore.mutate(hash, 'SET_CHARACTER_COMICS', { result })
         }
       },
+
   },
 };
 
@@ -35,3 +42,9 @@ const myFirstModule: Module<{ characterComics: []; }> = {
 myStore.register('myFirstModule', myFirstModule);
 
 myStore.dispatch('myFirstModule', 'myFirstAction', {})
+
+myStore.subscribe('myFirstModule', (newState: any) => {
+  console.log('myFirstModule mutation:', newState);
+})
+
+export default myStore;
