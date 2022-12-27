@@ -1,9 +1,11 @@
 import { fetchData } from '../utils/utils.ts'
 import useStore, { Module } from 'diox/connectors/react';
-import {
-  mutate,
-} from '@perseid/client'; // where is this from ??
+import Store from 'diox';
+// import {
+//   mutate,
+// } from '@perseid/client'; // where is this ßrom ??
 const myStore = new Store();
+export default myStore;
 
 const myFirstModule: Module<{ characterComics: []; }> = {
   state: {
@@ -11,20 +13,25 @@ const myFirstModule: Module<{ characterComics: []; }> = {
   },
   mutations: {
    SET_CHARACTER_COMICS({ state }, apiResponse) {
-        return {
-          ...state,
-          characterComics: apiResponse.data.results
-        };
-      },
+        if ( apiResponse ){
+          return {
+            ...state,
+            characterComics: apiResponse.result.data.results
+          };
+        }
+      }
   },
   actions: {
-      async () => { // Matt - How to write this action ? with a promise?
+      myFirstAction: async ({hash}) => {
         const result = await fetchData( './characters' );
-        mutate(hash, 'SET_CHARACTER_COMICS', { result })
-      }
+        if(result.data.results.length > 0){
+          myStore.mutate(hash, 'SET_CHARACTER_COMICS', { result })
+        }
+      },
   },
 };
 
 // The module must be registered to a store
 myStore.register('myFirstModule', myFirstModule);
 
+myStore.dispatch('myFirstModule', 'myFirstAction', {})
